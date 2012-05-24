@@ -30,11 +30,6 @@ describe User do
 
   it { should be_valid }
 
-  describe "remember token" do
-    before { @user.save }
-    its(:remember_token) { should_not be_blank }
-  end  
-
   describe "when name is not present" do
     before { @user.name = " " }
     it { should_not be_valid }
@@ -94,6 +89,7 @@ describe User do
     before { @user.password_confirmation = nil }
     it { should_not be_valid }
   end
+  
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
@@ -102,6 +98,7 @@ describe User do
   describe "return value of authenticate method" do
     before { @user.save }
     let(:found_user) { User.find_by_email(@user.email) }
+  end
 
     describe "with valid password" do
       it { should == found_user.authenticate(@user.password) }
@@ -113,6 +110,10 @@ describe User do
       it { should_not == user_for_invalid_password }
       specify { user_for_invalid_password.should be_false }
     end
-  end
+  
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end  
 end
 
