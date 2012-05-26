@@ -45,8 +45,7 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
-
-    # authentication_pages_spec.rb - Listing 9.52
+  
     describe "when attempting to visit a protected page" do 
         before do
           visit edit_user_path(user)
@@ -60,9 +59,7 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
-        end # End of Listing 9.52
-
-
+        end
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }

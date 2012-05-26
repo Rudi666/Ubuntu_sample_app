@@ -21,13 +21,9 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.0'
-gem 'execjs'
-gem 'therubyracer'
-
 
 group :test, :development do
   gem 'rspec-rails', '2.10.0'
-  gem 'annotate', '~> 2.4.1.beta'
   gem 'guard-rspec', '0.5.5'
   gem 'guard-spork', '0.3.2'
   gem 'spork', '0.9.0'

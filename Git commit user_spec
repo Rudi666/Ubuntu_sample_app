@@ -1,0 +1,17 @@
+git add spec/requests/user_pages_spec.rb
+
+git commit -m 'Fixed RSPEC bugs in user_pages_spec.r Need to fix authentication_pages_spec.rb. APP working fine.'
+
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+
+...............................................................
+
+Finished in 4.32 seconds
+63 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ 
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git add spec/requests/user_pages_spec.rb
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git commit -m 'Fixed RSPEC bugs in user_pages_spec.r Need to fix authentication_pages_spec.rb. APP working fine.'
+[updating-users 623fd19] Fixed RSPEC bugs in user_pages_spec.r Need to fix authentication_pages_spec.rb. APP working fine.
+ 1 files changed, 62 insertions(+), 0 deletions(-)
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ 
+

@@ -1,0 +1,98 @@
+rudi@rudi-desktop:~$ cd Code/Ruby/sample_app
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git log
+commit 623fd19cd6051370c3999226793698651a839006
+Author: Joe Karas <rudi4@tampabay.rr.com>
+Date:   Fri May 25 16:58:17 2012 -0400
+
+    Fixed RSPEC bugs in user_pages_spec.r Need to fix authentication_pages_spec.
+
+commit 77caf6d0065249973839ce88cafd933e912059f2
+Author: Joe Karas <rudi4@tampabay.rr.com>
+Date:   Wed May 23 21:58:28 2012 -0400
+
+    CH8 Cucumber test suite. All scenarios passed
+
+commit 7062eb79215f3199e2043b85907e8f2bc05dcfa2
+Author: Joe Karas <rudi4@tampabay.rr.com>
+Date:   Wed May 23 21:30:46 2012 -0400
+
+    Finish sign-in-out(CH8), no Cucumber. All RSPEC tests workinggit add .
+
+commit 7e0c4e8247b42ef3041ee9af3cbbf5cc482e226d
+Author: Joe Karas <rudi4@tampabay.rr.com>
+Date:   Tue May 22 21:58:39 2012 -0400
+
+    Finish user signup. All RSPEC tests workingbundle exec rspec spec/
+
+commit c5bf95ae0170310bf32fad0c9633d4f6e346b34e
+Author: Joe Karas <rudi4@tampabay.rr.com>
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git status
+# On branch updating-users
+# Changed but not updated:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   Gemfile
+#	modified:   Gemfile.lock
+#	modified:   app/assets/stylesheets/custom.css.scss
+#	modified:   app/controllers/sessions_controller.rb
+#	modified:   app/controllers/users_controller.rb
+#	modified:   app/helpers/sessions_helper.rb
+#	modified:   app/helpers/users_helper.rb
+#	modified:   app/views/layouts/_header.html.erb
+#	modified:   config/database.yml
+#	modified:   db/schema.rb
+#	deleted:    public/index.html
+#	modified:   spec/factories.rb
+#	modified:   spec/models/user_spec.rb
+#	modified:   spec/requests/authentication_pages_spec.rb
+#	modified:   spec/support/utilities.rb
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	Git commit user_spec
+#	app/views/users/_user.html.erb
+#	app/views/users/edit.html.erb
+#	app/views/users/index.html.erb
+#	db/migrate/20120525024841_add_admin_to_users.rb
+#	lib/tasks/sample_data.rake
+#	sample_app-CH8/
+#	spec/requests/authentication_pages_spec1OK.rb
+#	spec/requests/authentication_pages_spec2-OK.rb
+#	spec/requests/authentication_pages_spec3-OK.rb
+#	spec/requests/authentication_pages_spec4-OK.rb
+#	spec/requests/authentication_pages_spec5-OK.rb
+#	spec/requests/user_pages_spec L9.23.rb
+#	spec/requests/user_pages_spec L9.33.rb
+#	spec/requests/user_pages_spec L9.44.Working.rb
+#	spec/requests/user_pages_spec.Old.rb
+#	spec/requests/user_pages_spec.bad.rb
+no changes added to commit (use "git add" and/or "git commit -a")
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+...............................................................
+
+Finished in 6.45 seconds
+63 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+...............................................................
+
+Finished in 4.45 seconds
+63 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+...............................................................
+
+Finished in 4.43 seconds
+63 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+................................................................
+
+Finished in 4.5 seconds
+64 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+................................................................
+
+Finished in 4.48 seconds
+64 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ 
+
