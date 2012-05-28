@@ -1,46 +1,23 @@
 require 'spec_helper'
 
-describe "UserPages" do
+describe "User Pages" do
   
 subject { page }
 
-  # Listing 9.13
-  describe "edit" do
-    let(:user) { FactoryGirl.create(:user) }
-    before do
-      sign_in user
-      visit edit_user_path(user)
-    end
-  end
-
   describe "profile page" do
+    # Code to make a user variable
     let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
-    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }    
-
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
-
-    describe "microposts" do
-      it { should have_content(m1.content) }
-      it { should have_content(m2.content) }
-      it { should have_content(user.microposts.count) }
-    end
   end
 
-  # Listing 9.33.
-  # 59 examples, 0 failures
   describe "index" do
-
-    let(:user) { FactoryGirl.create(:user) }
-
-    before(:all) { 30.times { FactoryGirl.create(:user) } }
-    after(:all)  { User.delete_all }
-
-    before(:each) do
-      sign_in user
+    before do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
+      FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
       visit users_path
     end
 
@@ -57,11 +34,6 @@ subject { page }
         end
       end
     end
- 
-    # Add Delete links 
-    # Listing 9.44
-    # 63 examples, 0 failures
-    # user spec now working!!
     describe "delete links" do
 
       it { should_not have_link('delete') }
@@ -80,8 +52,9 @@ subject { page }
         it { should_not have_link('delete', href: user_path(admin)) }
       end
     end
- # End of delete links
- end
+  end
+end
+
 
   describe "signup" do
 
@@ -115,7 +88,44 @@ subject { page }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link('Sign out') }
       end
-    
+    end
+  end
+
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      sign_in user
+      visit edit_user_path(user)
+    end
+
+    describe "page" do
+      it { should have_selector('h1',    text: "Update your profile") }
+      it { should have_selector('title', text: "Edit user") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+  end
+    describe "with valid information" do
+      let(:new_name)  { "New Name" }
+      let(:new_email) { "new@example.com" }
+      before do
+        fill_in "Name",             with: new_name
+        fill_in "Email",            with: new_email
+        fill_in "Password",         with: user.password
+        fill_in "Confirm Password", with: user.password
+        click_button "Save changes"
+      end
+
+      it { should have_selector('title', text: new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Sign out', href: signout_path) }
+      specify { user.reload.name.should  == new_name }
+      specify { user.reload.email.should == new_email }
     end
   end
 end

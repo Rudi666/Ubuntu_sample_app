@@ -58,6 +58,7 @@ describe User do
     before { @user.email = " " }
     it { should_not be_valid }
   end
+  
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.
@@ -103,6 +104,7 @@ describe User do
     before { @user.password_confirmation = nil }
     it { should_not be_valid }
   end
+  
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
@@ -123,8 +125,8 @@ describe User do
       specify { user_for_invalid_password.should be_false }
     end
   end
-# Describe ass
-  describe "micropost associations" do
+  
+   describe "micropost associations" do
 
     before { @user.save }
     let!(:older_micropost) do 
@@ -144,19 +146,7 @@ describe User do
       microposts.each do |micropost|
         Micropost.find_by_id(micropost.id).should be_nil
       end
-      #lambda do 
-      #  Micropost.find(micropost.id)
-      # end.should raise_error(ActiveRecord::RecordNotFound)   
-    end
-
-    describe "status" do
-      let(:unfollowed_post) do
-        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
-      end
-
-      its(:feed) { should include(newer_micropost) }
-      its(:feed) { should include(older_micropost) }
-      its(:feed) { should_not include(unfollowed_post) }
     end
   end
 end
+

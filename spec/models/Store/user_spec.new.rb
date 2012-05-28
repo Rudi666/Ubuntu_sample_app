@@ -58,6 +58,7 @@ describe User do
     before { @user.email = " " }
     it { should_not be_valid }
   end
+  
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.
@@ -103,6 +104,7 @@ describe User do
     before { @user.password_confirmation = nil }
     it { should_not be_valid }
   end
+  
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
@@ -123,40 +125,30 @@ describe User do
       specify { user_for_invalid_password.should be_false }
     end
   end
-# Describe ass
-  describe "micropost associations" do
+  
+   describe "micropost associations" do
 
-    before { @user.save }
-    let!(:older_micropost) do 
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
-    end
-    let!(:newer_micropost) do
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+    before(:each) do
+      @user = User.create(@attr)
+      @mp1 = Factory(:micropost, :user => @user, :created_at => 1.day.ago)
+      @mp2 = Factory(:micropost, :user => @user, :created_at => 1.hour.ago)
     end
 
+    
+    it "should have a microposts attribute" do
+      @user.should respond_to(:microposts)
+    end
+    
     it "should have the right microposts in the right order" do
-      @user.microposts.should == [newer_micropost, older_micropost]
+      @user.microposts.should == [@mp2, @mp1]
     end
     
     it "should destroy associated microposts" do
-      microposts = @user.microposts
       @user.destroy
-      microposts.each do |micropost|
-        Micropost.find_by_id(micropost.id).should be_nil
+      [@mp1, @mp2].each do |micropost|
+        lambda do
+          Micropost.find(micropost)
+        end.should raise_error(ActiveRecord::RecordNotFound)
       end
-      #lambda do 
-      #  Micropost.find(micropost.id)
-      # end.should raise_error(ActiveRecord::RecordNotFound)   
     end
-
-    describe "status" do
-      let(:unfollowed_post) do
-        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
-      end
-
-      its(:feed) { should include(newer_micropost) }
-      its(:feed) { should include(older_micropost) }
-      its(:feed) { should_not include(unfollowed_post) }
-    end
-  end
 end

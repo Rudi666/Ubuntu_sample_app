@@ -1,0 +1,126 @@
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ bundle exec rspec spec/
+
+................................................................
+
+Finished in 4.5 seconds
+64 examples, 0 failures
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ 
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git add .
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git commit -m "Finish user edit, update, index, and destroy actions. 1 small bug, authenticate test placement"
+[updating-users a4e1295] Finish user edit, update, index, and destroy actions. 1 small bug, authenticate test placement
+ 41 files changed, 2326 insertions(+), 94 deletions(-)
+ create mode 100644 All tests working- with 1 bug
+ create mode 100644 Final.Gemfile
+ create mode 100644 Final.Gemfile. with JSEXEC
+ rewrite Gemfile (61%)
+ create mode 100644 Git commit user_spec
+ rename Gemfile => Good.Gemfile (93%)
+ create mode 100644 app/views/users/_user.html.erb
+ create mode 100644 app/views/users/edit.html.erb
+ create mode 100644 app/views/users/index.html.erb
+ create mode 100644 db/migrate/20120525024841_add_admin_to_users.rb
+ create mode 100644 lib/tasks/sample_data.rake
+ create mode 160000 sample_app-CH8
+ create mode 100644 spec/requests/authentication_pages_spec.Good.rb
+ copy spec/requests/{authentication_pages_spec.rb => authentication_pages_spec1OK.rb} (93%)
+ create mode 100644 spec/requests/authentication_pages_spec2-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec3-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec4-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec5-OK.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.14.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.17.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.27.1.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.47.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.52.rb
+ create mode 100644 spec/requests/user_pages_spec L9.23.rb
+ create mode 100644 spec/requests/user_pages_spec L9.33.rb
+ create mode 100644 spec/requests/user_pages_spec L9.44.Working.rb
+ create mode 100644 spec/requests/user_pages_spec.Old.rb
+ create mode 100644 spec/requests/user_pages_spec.bad.rb
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git checkout master
+warning: unable to rmdir sample_app-CH8: Directory not empty
+D	public/index.html
+Switched to branch 'master'
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git merge updating-users
+Updating 77caf6d..a4e1295
+Fast-forward
+ All tests working- with 1 bug                     |   98 +++++
+ Final.Gemfile                                     |   41 ++
+ Final.Gemfile. with JSEXEC                        |  411 +++++++++++++++++++++
+ Gemfile                                           |   59 +--
+ Gemfile.lock                                      |   59 ++-
+ Git commit user_spec                              |   17 +
+ Good.Gemfile                                      |   67 ++++
+ app/assets/stylesheets/custom.css.scss            |   14 +
+ app/controllers/sessions_controller.rb            |    2 +-
+ app/controllers/users_controller.rb               |   46 +++
+ app/helpers/sessions_helper.rb                    |   12 +
+ app/helpers/users_helper.rb                       |    2 +-
+ app/views/layouts/_header.html.erb                |    4 +-
+ app/views/users/_user.html.erb                    |    7 +
+ app/views/users/edit.html.erb                     |   28 ++
+ app/views/users/index.html.erb                    |   12 +
+ config/database.yml                               |    5 +-
+ db/migrate/20120525024841_add_admin_to_users.rb   |    5 +
+ db/schema.rb                                      |    3 +-
+ lib/tasks/sample_data.rake                        |   24 ++
+ sample_app-CH8                                    |    1 +
+ spec/factories.rb                                 |    8 +-
+ spec/models/user_spec.rb                          |    8 +
+ spec/requests/authentication_pages_spec.Good.rb   |   98 +++++
+ spec/requests/authentication_pages_spec.rb        |   75 ++++
+ spec/requests/authentication_pages_spec1OK.rb     |   44 +++
+ spec/requests/authentication_pages_spec2-OK.rb    |   64 ++++
+ spec/requests/authentication_pages_spec3-OK.rb    |   80 ++++
+ spec/requests/authentication_pages_spec4-OK.rb    |   80 ++++
+ spec/requests/authentication_pages_spec5-OK.rb    |   98 +++++
+ spec/requests/authentication_pages_specL9.14.rb   |   99 +++++
+ spec/requests/authentication_pages_specL9.17.rb   |   98 +++++
+ spec/requests/authentication_pages_specL9.27.1.rb |   99 +++++
+ spec/requests/authentication_pages_specL9.47.rb   |  113 ++++++
+ spec/requests/authentication_pages_specL9.52.rb   |  116 ++++++
+ spec/requests/user_pages_spec L9.23.rb            |   81 ++++
+ spec/requests/user_pages_spec L9.33.rb            |   90 +++++
+ spec/requests/user_pages_spec L9.44.Working.rb    |  114 ++++++
+ spec/requests/user_pages_spec.Old.rb              |   52 +++
+ spec/requests/user_pages_spec.bad.rb              |  132 +++++++
+ spec/requests/user_pages_spec.rb                  |   62 +++
+ spec/support/utilities.rb                         |    9 +
+ 42 files changed, 2468 insertions(+), 69 deletions(-)
+ create mode 100644 All tests working- with 1 bug
+ create mode 100644 Final.Gemfile
+ create mode 100644 Final.Gemfile. with JSEXEC
+ create mode 100644 Git commit user_spec
+ create mode 100644 Good.Gemfile
+ create mode 100644 app/views/users/_user.html.erb
+ create mode 100644 app/views/users/edit.html.erb
+ create mode 100644 app/views/users/index.html.erb
+ create mode 100644 db/migrate/20120525024841_add_admin_to_users.rb
+ create mode 100644 lib/tasks/sample_data.rake
+ create mode 160000 sample_app-CH8
+ create mode 100644 spec/requests/authentication_pages_spec.Good.rb
+ create mode 100644 spec/requests/authentication_pages_spec1OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec2-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec3-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec4-OK.rb
+ create mode 100644 spec/requests/authentication_pages_spec5-OK.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.14.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.17.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.27.1.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.47.rb
+ create mode 100644 spec/requests/authentication_pages_specL9.52.rb
+ create mode 100644 spec/requests/user_pages_spec L9.23.rb
+ create mode 100644 spec/requests/user_pages_spec L9.33.rb
+ create mode 100644 spec/requests/user_pages_spec L9.44.Working.rb
+ create mode 100644 spec/requests/user_pages_spec.Old.rb
+ create mode 100644 spec/requests/user_pages_spec.bad.rb
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ git push
+Counting objects: 90, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (58/58), done.
+Writing objects: 100% (59/59), 15.55 KiB, done.
+Total 59 (delta 30), reused 0 (delta 0)
+To git@github.com:Rudi666/Ubuntu_sample_app.git
+   77caf6d..a4e1295  master -> master
+rudi@rudi-desktop:~/Code/Ruby/sample_app$ 
+

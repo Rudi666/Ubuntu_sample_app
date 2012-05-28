@@ -19,7 +19,6 @@ describe "Authentication" do
       end
     end
 
-    # authentication_pages_spec.rb - Listing 9.27 / Not in authorization!!
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
@@ -45,23 +44,7 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
-
-    # authentication_pages_spec.rb - Listing 10.26
-      describe "in the Microposts controller" do
-
-        describe "submitting to the create action" do
-          before { post microposts_path }
-          specify { response.should redirect_to(signin_path) }
-        end
-
-        describe "submitting to the destroy action" do
-          before { delete micropost_path(FactoryGirl.create(:micropost)) }
-          specify { response.should redirect_to(signin_path) }
-        end
-      end # End of Listing 10.26
-
-
-    # authentication_pages_spec.rb - Listing 9.52
+  
     describe "when attempting to visit a protected page" do 
         before do
           visit edit_user_path(user)
@@ -75,9 +58,7 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
-        end # End of Listing 9.52
-
-
+        end
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
@@ -106,23 +87,9 @@ describe "Authentication" do
         describe "submitting to the update action" do
           before { put user_path(user) }
           specify { response.should redirect_to(signin_path) }
-        end # Listing 9.21
-
-    # authentication_pages_spec.rb - Listing 9.47
-    describe "as non-admin user" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:non_admin) { FactoryGirl.create(:user) }
-
-      before { sign_in non_admin }
-
-      describe "submitting a DELETE request to the Users#destroy action" do
-        before { delete user_path(user) }
-        specify { response.should redirect_to(root_path) }        
+        end
       end
-    end  # Listing 9.47
-
-  end
-end
+    end
 
 
   end
